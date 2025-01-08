@@ -1,44 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Menu from '@/components/Menu.vue'
-import AuthPage from '@/components/AuthPage.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import Login from '../components/Login.vue';
+import Register from '../components/Register.vue';
+import Dashboard from '../components/Dashboard.vue'; 
+import { auth } from '../firebase';
+
+
+
+const routes = [
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
+  { path: '/dashboard', component: Dashboard , meta: {requiresAuth: true } },
+  { path: '/', redirect: '/login' },
+];
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    // {
-    //   path: '/',
-    //   name: 'Login',
-    //   component: HomeView,
-    // },
-    // {
-    //   path: '/register',
-    //   name: 'R',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue'),
-    // },
-  
-  
-    {
-      path: '/',
-      name: 'AuthPage',
-    component: AuthPage,
-    },
-
-  
-
-    {
-      path: '/menu',
-      name: 'Menu',
-      component: Menu,
-    }
+  history: createWebHistory(),
+  routes,
+});
 
 
-  ],
-})
+router.beforeEach((to, from, next) => {
+  const currentUser = auth.currentUser;
+  if (to.matched.some(record => record.meta.requiresAuth) && !currentUser) {
+    next('/login');
+  } else {
+    next();
+  }
+});
 
-
-
-    
-
-export default router
+export default router;
