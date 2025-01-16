@@ -1,8 +1,9 @@
-<template>
+<!-- 
+   <template>
     <div>
       <h2>Mi Carrito de Compras</h2>
   
-      <!-- Mostrar productos del carrito -->
+     
       <ul>
         <li v-for="(producto, index) in carrito" :key="producto.id">
           <span>{{ producto.nombre }} - ${{ producto.precio }} x {{ producto.cantidad }}</span>
@@ -10,16 +11,15 @@
         </li>
       </ul>
   
-      <!-- Mostrar mensaje si el carrito está vacío -->
       <p v-if="carrito.length === 0">Tu carrito está vacío.</p>
   
-      <!-- Mostrar total -->
+     
       <div v-if="carrito.length > 0">
         <p>Total: ${{ calcularTotal() }}</p>
         <button @click="vaciarCarrito">Vaciar Carrito</button>
       </div>
   
-      <!-- Mostrar los productos disponibles para agregar -->
+      
       <div>
         <h3>Productos disponibles</h3>
         <ul>
@@ -34,8 +34,8 @@
   
   <script>
   import { ref, onMounted } from 'vue';
-  import { auth, db } from '../firebase'; // Asegúrate de tener configurado Firebase correctamente
-  import { doc, setDoc, getDoc } from 'firebase/firestore'; // Funciones de Firestore
+  import { auth, db } from '../firebase'; 
+  import { doc, setDoc, getDoc } from 'firebase/firestore'; 
   
   export default {
     setup() {
@@ -45,68 +45,70 @@
         { id: 2, nombre: 'Producto 2', precio: 150 },
         { id: 3, nombre: 'Producto 3', precio: 200 }
       ]);
-      const user = auth.currentUser;  // Obtener el usuario autenticado
   
-      // Función para calcular el total del carrito
+     
+      const user = auth.currentUser;
+  
+     
       function calcularTotal() {
         return carrito.value.reduce((total, producto) => {
           return total + producto.precio * producto.cantidad;
         }, 0);
       }
   
-      // Función para agregar un producto al carrito
+      
       function agregarAlCarrito(producto) {
-        // Verificar si el producto ya está en el carrito
+      
         const index = carrito.value.findIndex(item => item.id === producto.id);
         if (index !== -1) {
-          carrito.value[index].cantidad++;  // Si ya está, solo aumentar la cantidad
+          carrito.value[index].cantidad++;  
         } else {
-          carrito.value.push({ ...producto, cantidad: 1 });  // Si no está, agregarlo al carrito
+          carrito.value.push({ ...producto, cantidad: 1 });  
         }
   
-        guardarCarritoEnFirestore(carrito.value);  // Guardar el carrito actualizado en Firestore
+        guardarCarritoEnFirestore(carrito.value);  
       }
   
-      // Función para eliminar un producto del carrito
+    
       function eliminarProducto(index) {
-        carrito.value.splice(index, 1);  // Eliminar el producto del carrito
-        guardarCarritoEnFirestore(carrito.value);  // Guardar el carrito actualizado en Firestore
+        carrito.value.splice(index, 1);  
+        guardarCarritoEnFirestore(carrito.value); 
       }
   
-      // Función para vaciar el carrito
+     
       function vaciarCarrito() {
-        carrito.value = [];  // Vaciar el carrito
-        guardarCarritoEnFirestore(carrito.value);  // Guardar el carrito vacío en Firestore
+        carrito.value = [];  
+        guardarCarritoEnFirestore(carrito.value);  
       }
   
-      // Función para guardar el carrito en Firestore
+    
       async function guardarCarritoEnFirestore(carrito) {
         if (user) {
-          const carritoRef = doc(db, 'carrito', user.uid);  // Crear documento con el UID del usuario
+          const carritoRef = doc(db, 'carrito', user.uid);  
           await setDoc(carritoRef, {
-            productos: carrito,  // Array de productos en el carrito
-            fecha: new Date().toISOString()  // Fecha de la actualización
-          }, { merge: true });  // Usar 'merge: true' para no sobrescribir el documento si ya existe
+            productos: carrito,  
+            fecha: new Date().toISOString()  
+          }, { merge: true });  
           console.log('Carrito guardado en Firestore');
         } else {
           console.error('Usuario no autenticado');
         }
       }
   
-      // Función para obtener el carrito de Firestore cuando se monta el componente
+     
       async function obtenerCarritoDeFirestore() {
         if (user) {
           const carritoRef = doc(db, 'carrito', user.uid);
           const docSnap = await getDoc(carritoRef);
           if (docSnap.exists()) {
-            carrito.value = docSnap.data().productos || [];  // Cargar el carrito desde Firestore
+            carrito.value = docSnap.data().productos || [];  
           } else {
-            carrito.value = [];  // Si no hay carrito, usar un carrito vacío
+            carrito.value = [];  
           }
         }
       }
   
-      // Cargar el carrito al montar el componente
+     
       onMounted(() => {
         obtenerCarritoDeFirestore();
       });
@@ -124,6 +126,104 @@
   </script>
   
   <style scoped>
-  /* Agregar aquí los estilos para tu carrito de compras */
+
   </style>
   
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <template>
+  <div>
+    <h2>Mi Carrito de Compras</h2>
+
+    <!-- Mostrar productos del carrito -->
+    <ul>
+      <li v-for="(producto, index) in carrito" :key="producto.id">
+        <span>{{ producto.nombre }} - ${{ producto.precio }} x 1</span>
+        <button @click="eliminarProducto(index)">Eliminar</button>
+      </li>
+    </ul>
+
+    <!-- Mostrar mensaje si el carrito está vacío -->
+    <p v-if="carrito.length === 0">Tu carrito está vacío.</p>
+
+    <!-- Mostrar total -->
+    <div v-if="carrito.length > 0">
+      <p>Total: ${{ calcularTotal() }}</p>
+      <button @click="vaciarCarrito">Vaciar Carrito</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue';
+
+export default {
+  name: 'Cart',
+  setup() {
+    const carrito = ref([]);
+
+    // Cargar el carrito desde localStorage al montar el componente
+    onMounted(() => {
+      const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
+      if (carritoGuardado) {
+        carrito.value = carritoGuardado;
+      }
+    });
+
+    function eliminarProducto(index) {
+      carrito.value.splice(index, 1); // Eliminar el producto del carrito
+      localStorage.setItem('carrito', JSON.stringify(carrito.value)); // Guardar el carrito actualizado en localStorage
+    }
+
+    function vaciarCarrito() {
+      carrito.value = []; // Vaciar el carrito
+      localStorage.removeItem('carrito'); // Eliminar carrito de localStorage
+    }
+
+    function calcularTotal() {
+      return carrito.value.reduce((total, producto) => total + producto.precio, 0);
+    }
+
+    return {
+      carrito,
+      eliminarProducto,
+      vaciarCarrito,
+      calcularTotal
+    };
+  }
+};
+</script>
+
+<style scoped>
+/* Agregar aquí los estilos para tu carrito de compras */
+</style>

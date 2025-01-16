@@ -38,18 +38,18 @@
 
 
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="/Cart"><i class="fas fa-shopping-cart"></i> Carrito</a>
-            </li>
+            </li> -->
 
             <!-- <li class="nav-item"><a  class="nav-link" href="/Profile">Usuario</a></li>
             <li class="nav-item"><a class="nav-link" href="#contactanos">Contáctanos</a></li> -->
           
 
-
+<!-- 
             <li class="nav-item">
               <a class="nav-link" href="/Profile"><i class="fas fa-user"></i> Usuario</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#contactanos"><i class="fas fa-envelope"></i> Contáctanos</a>
             </li>
