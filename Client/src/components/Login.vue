@@ -94,7 +94,7 @@ const handleLogin = async () => {
  }
  
  .bg-dark {
-   background-color: #141414;
+   background-color: #ffffff;
  }
  
  .form-label {
@@ -102,14 +102,14 @@ const handleLogin = async () => {
  }
  
  .btn-primary {
-   background-color: #00ffcc;
+   background-color: #000ba1;
    border: none;
-   color: #000;
+   color: #ffffff;
    font-weight: bold;
  }
  
  .btn-primary:hover {
-   background-color: #00e6b3;
+   background-color: #041586;
  }
  
  .img-fluid {

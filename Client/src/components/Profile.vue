@@ -1,33 +1,85 @@
+
+
 <template>
   <div class="container mt-4">
-    <!-- Profile Content -->
-    <h2>Your Profile</h2>
-    <p>Manage your personal details and account settings.</p>
+   
+    <button class="btn btn-secondary" @click="goToDashboard">Volver Atras</button>
 
-    <!-- Display user info -->
-    <div class="card mb-3">
+    <h2>Perfil de Usuario</h2>
+    <p>Mis datos personales sobre detalles de la compra y configuraciones del usuario.</p>
+
+   
+    <div v-if="user" class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title">User Information</h5>
-        <p class="card-text"><strong>Email:</strong> {{ user?.email }}</p>
-        <p class="card-text"><strong>Name:</strong> {{ user?.displayName || 'Not set' }}</p>
+        <h5 class="card-title">información del Usuario</h5>
+        <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="card-text"><strong>Name:</strong> {{ user.displayName || 'Not set' }}</p>
+        <p class="card-text"><strong>Phone Number:</strong> {{ user.phoneNumber || 'Not set' }}</p>
+        <p class="card-text"><strong>Address:</strong> {{ user.address || 'Not set' }}</p>
       </div>
     </div>
 
-    <!-- Delete Account Button -->
-    <button class="btn btn-danger" @click="handleDeleteAccount">Delete Account</button>
+    <div v-else>
+      <p>Loading user information...</p>
+    </div>
+
+    <!-- Change Password Button -->
+    <button class="btn btn-primary" @click="handleChangePassword">Cambiar Contraseña</button>
+
+    <!-- Purchase History -->
+    <div v-if="orders.length > 0" class="mt-4">
+      <h5>Your Purchase History</h5>
+      <ul class="list-group">
+        <li v-for="order in orders" :key="order.id" class="list-group-item">
+          <strong>Order ID:</strong> {{ order.id }} | <strong>Total:</strong> ${{ order.total }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Recommended Products -->
+    <div class="mt-4">
+      <h5>Recommended Products</h5>
+      <div class="row">
+        <div v-for="product in recommendedProducts" :key="product.id" class="col-md-4">
+          <div class="card">
+            <img :src="product.imageUrl" class="card-img-top" alt="product image">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">${{ product.price }}</p>
+              <button class="btn btn-success">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <button class="btn btn-danger mt-4" @click="handleDeleteAccount">Borrar Cuenta</button>
   </div>
 </template>
 
+
+
+
+
+
+
 <script setup>
-import { getAuth, deleteUser } from 'firebase/auth';
+import { getAuth, deleteUser, updatePassword } from 'firebase/auth';
 import { useRouter } from 'vue-router';
 import { auth } from '../firebase';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 const router = useRouter();
 
-// Store user information
+// Store user information and orders
 const user = ref(null);
+const orders = ref([]);  // Placeholder for order history
+const recommendedProducts = ref([
+  { id: 1, name: 'Protein Powder', price: 29.99, imageUrl: '/images/protein.jpg' },
+  { id: 2, name: 'Yoga Mat', price: 19.99, imageUrl: '/images/yoga-mat.jpg' },
+  { id: 3, name: 'Dumbbells Set', price: 49.99, imageUrl: '/images/dumbbells.jpg' }
+]);  // Sample recommended products
 
 // Handle account deletion
 const handleDeleteAccount = async () => {
@@ -50,13 +102,49 @@ const handleDeleteAccount = async () => {
   }
 };
 
-// Get current user info when component mounts
-onMounted(() => {
+// Handle password change
+const handleChangePassword = async () => {
   const currentUser = auth.currentUser;
+
   if (currentUser) {
-    user.value = currentUser;
+    const newPassword = prompt('Enter your new password:');
+
+    if (newPassword) {
+      try {
+        await updatePassword(currentUser, newPassword);
+        alert('Password changed successfully!');
+      } catch (error) {
+        console.error('Error changing password: ', error.message);
+      }
+    }
+  } else {
+    console.error('No user is logged in.');
   }
+};
+
+// Listen for authentication state changes
+onMounted(() => {
+  auth.onAuthStateChanged((currentUser) => {
+    if (currentUser) {
+      user.value = currentUser;  // Set user information once Firebase is ready
+    } else {
+      console.log('No user is authenticated');
+    }
+  });
 });
+
+// Fetch order history (placeholder for now)
+onMounted(() => {
+  orders.value = [
+    { id: '12345', total: 99.99 },
+    { id: '67890', total: 49.99 }
+  ];
+});
+
+// Redirige al Dashboard
+const goToDashboard = () => {
+  router.push('/dashboard'); // Cambia '/dashboard' por la ruta real de tu dashboard
+};
 </script>
 
 <style scoped>
@@ -78,8 +166,27 @@ h2 {
   margin-bottom: 20px;
 }
 
-.btn-danger {
+.btn-danger, .btn-primary, .btn-success, .btn-secondary {
   margin-top: 20px;
   padding: 10px 15px;
 }
+
+.list-group-item {
+  margin-bottom: 10px;
+}
+
+.row {
+  margin-top: 20px;
+}
+
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  text-align: center;
+}
 </style>
+
+
