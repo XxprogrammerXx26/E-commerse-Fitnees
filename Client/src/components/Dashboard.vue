@@ -121,6 +121,11 @@
       </div>
     </div>
 
+
+
+
+
+
     <div class="mt-5">
       <h3 class="text-primary">Nuestro Equipo</h3>
       <p>Contamos con un equipo de profesionales apasionados por el fitness y la salud. Cada uno de ellos está comprometido a ayudarte a alcanzar tus metas de la manera más efectiva y segura posible.</p>
@@ -156,6 +161,10 @@
     </div>
   </div>
 </section>
+
+
+
+
 
 
 
@@ -275,7 +284,6 @@
       <div class="container text-center">
         <h2 class="text-primary mb-4">Contáctanos</h2>
         <p>¿Tienes preguntas o necesitas más información? Escríbenos y con gusto te ayudaremos.</p>
-        <!-- <button class="btn btn-primary">Contáctanos Aquí</button> -->
 
         <router-link to="/form">
             <button class="btn btn-primary">Contáctanos Aquí</button>
@@ -289,6 +297,11 @@
 <script setup>
 
 </script>
+
+
+
+
+
 
 <style scoped>
 
@@ -363,6 +376,32 @@
   border-radius: 50px;
 
 }
+
+
+
+
+
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 350px; /* Ajusta la altura según tus necesidades */
+  object-fit: cover;
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 
 </style>
