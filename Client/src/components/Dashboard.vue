@@ -188,7 +188,7 @@
           <div class="col-md-6">
             <h2 class="text text-primary">Suplementos</h2>
             <p>Complementa tu entrenamiento y acelera tus resultados con FitnessHub Protein...</p>
-            <!-- <button class="btn btn-primary">Compra tu proteína aquí</button> -->
+   
             
             <router-link to="/productos">
             <button class="btn btn-primary">Compra tu proteína aquí</button>
@@ -220,13 +220,16 @@
             </div>
             <h3 class="card-title text-primary mb-3">Entrenamientos Personalizados</h3>
             <p class="card-text">Diseñamos rutinas específicas para alcanzar tus metas. Ya sea perder peso, ganar masa muscular o mejorar tu resistencia, te acompañamos en cada paso.</p>
-            <a href="#contacto" class="btn btn-primary mt-3">Solicita tu plan</a>
+            <!-- <a href="#contacto" class="btn btn-primary mt-3">Solicita tu plan</a> -->
+            <router-link to="/plansimulado" class="btn btn-primary mt-3" target="_blank">Solicita tu plan</router-link>
+
+
           </div>
         </div>
       </div>
 
     
-      <div class="col-md-4 mb-4">
+      <!-- <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-lg border-0 rounded-lg">
           <div class="card-body">
             <div class="d-flex justify-content-center mb-3">
@@ -237,7 +240,38 @@
             <a href="#contacto" class="btn btn-success mt-3">Más información</a>
           </div>
         </div>
+      </div> -->
+
+
+
+
+      <div class="col-md-4 mb-4">
+  <div class="card h-100 shadow-lg border-0 rounded-lg">
+    <div class="card-body">
+      <div class="d-flex justify-content-center mb-3">
+        <i class="fas fa-apple-alt fa-3x text-success"></i>
       </div>
+      <h3 class="card-title text-success mb-3">Asesoramiento Nutricional</h3>
+      <p class="card-text">
+        Con nuestros planes nutricionales, optimizamos tu alimentación para que puedas mejorar tu rendimiento físico y alcanzar tus objetivos más rápido.
+      </p>
+      <!-- Usamos router-link para redirigir sin recargar la página -->
+      <router-link to="/asesoramientonutricional" class="btn btn-success mt-3">Más información</router-link>
+    </div>
+  </div>
+</div>
+
+
+  
+
+
+
+
+
+
+
+
+
 
      
       <div class="col-md-4 mb-4">
@@ -248,8 +282,9 @@
             </div>
             <h3 class="card-title text-danger mb-3">Clases en Vivo</h3>
             <p class="card-text">Participa en nuestras clases en línea desde cualquier lugar, con entrenadores expertos que te guiarán en tiempo real. ¡Siente la motivación de entrenar con nosotros!</p>
-            <a href="#contacto" class="btn btn-danger mt-3">Únete ahora</a>
-          
+            <!-- <a href="#contacto" class="btn btn-danger mt-3">Únete ahora</a> -->
+            <router-link to="/clasesenvivo" class="btn btn-danger mt-3" target="_blank">Únete ahora</router-link>
+
         
           </div>
         </div>

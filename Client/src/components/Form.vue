@@ -199,12 +199,12 @@ export default {
       };
 
       try {
-        // Usar EmailJS para enviar el correo
+      
         const response = await emailjs.send(
-          'service_riwi3ri', // Reemplaza con tu Service ID
-          'template_hyvida4', // Reemplaza con tu Template ID
+          'service_riwi3ri', 
+          'template_hyvida4', 
           templateParams,
-          'MvDBmaPECYUuflKdn' // Reemplaza con tu User ID
+          'MvDBmaPECYUuflKdn' 
         );
 
         if (response.status === 200) {
