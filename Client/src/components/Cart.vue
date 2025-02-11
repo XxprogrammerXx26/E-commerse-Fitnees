@@ -1,127 +1,3 @@
-<!-- 
-<template>
-  <div>
-    <h2>Mi Carrito de Compras</h2>
-
-    <ul>
-      <li v-for="(producto, index) in carrito" :key="producto.id">
-        <span>{{ producto.nombre }} - ${{ producto.precio }} x 1</span>
-        <button @click="eliminarProducto(index)">Eliminar</button>
-      </li>
-    </ul>
-
-    <p v-if="carrito.length === 0">Tu carrito está vacío.</p>
-
-    <div v-if="carrito.length > 0">
-      <p>Total: ${{ calcularTotal() }}</p>
-      <button @click="vaciarCarrito">Vaciar Carrito</button>
-      <router-link to="/pago">
-        <button class="btn-pago">Forma de Pago</button>
-      </router-link>
-    </div>
-
-    <div v-if="pagoExitoso" class="alert alert-success mt-3">
-      <strong>¡Pago realizado con éxito!</strong> ¡Gracias por tu compra!
-    </div>
-  </div>
-</template>
-
-<script>
-import { ref, onMounted } from 'vue';
-
-export default {
-  name: 'Cart',
-  setup() {
-    const carrito = ref([]);
-
-    onMounted(() => {
-      const carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
-      if (carritoGuardado) {
-        carrito.value = carritoGuardado;
-      }
-    });
-
-    function eliminarProducto(index) {
-      carrito.value.splice(index, 1); 
-      localStorage.setItem('carrito', JSON.stringify(carrito.value)); 
-    }
-
-    function vaciarCarrito() {
-      carrito.value = []; 
-      localStorage.removeItem('carrito'); 
-    }
-
-    function calcularTotal() {
-      return carrito.value.reduce((total, producto) => total + producto.precio, 0);
-    }
-
-    return {
-      carrito,
-      eliminarProducto,
-      vaciarCarrito,
-      calcularTotal
-    };
-  }
-};
-</script>
-
-<style scoped>
-
-.btn-pago {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-pago:hover {
-  background-color: #218838;
-  transform: scale(1.05);
-}
-</style> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <template>
   <div class="cart-container">
@@ -327,6 +203,59 @@ export default {
   opacity: 0.9;
 }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

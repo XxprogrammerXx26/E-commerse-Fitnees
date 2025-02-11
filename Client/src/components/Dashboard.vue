@@ -220,8 +220,8 @@
             </div>
             <h3 class="card-title text-primary mb-3">Entrenamientos Personalizados</h3>
             <p class="card-text">Diseñamos rutinas específicas para alcanzar tus metas. Ya sea perder peso, ganar masa muscular o mejorar tu resistencia, te acompañamos en cada paso.</p>
-            <!-- <a href="#contacto" class="btn btn-primary mt-3">Solicita tu plan</a> -->
-            <router-link to="/plansimulado" class="btn btn-primary mt-3" target="_blank">Solicita tu plan</router-link>
+           
+            <router-link to="/Plansimulado" class="btn btn-primary mt-3">Solicita tu Plan</router-link>
 
 
           </div>
@@ -282,8 +282,8 @@
             </div>
             <h3 class="card-title text-danger mb-3">Clases en Vivo</h3>
             <p class="card-text">Participa en nuestras clases en línea desde cualquier lugar, con entrenadores expertos que te guiarán en tiempo real. ¡Siente la motivación de entrenar con nosotros!</p>
-            <!-- <a href="#contacto" class="btn btn-danger mt-3">Únete ahora</a> -->
-            <router-link to="/clasesenvivo" class="btn btn-danger mt-3" target="_blank">Únete ahora</router-link>
+            <!-- <router-link to="/clasesenvivo" class="btn btn-danger mt-3" target="_blank">Únete ahora</router-link> -->
+            <router-link to="/ClasesEnVivo" class="btn btn-danger mt-3">Únete ahora</router-link>
 
         
           </div>
