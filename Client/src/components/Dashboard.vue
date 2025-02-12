@@ -71,24 +71,50 @@
         </div>
       </div>
     </nav>
+  
+      
+    
 
-   
-    <section class="hero d-flex align-items-center justify-content-center text-center text-white" style="background: url('/src/assets/totalfit-benefit.6bbbb44a.jpeg') no-repeat center center/cover; height: 80vh;">
+  <!-- <section class="hero d-flex align-items-center justify-content-center text-center text-white" style="height: 80vh;">
+  <img src="/src/assets/totalfit-benefit.6bbbb44a.jpeg" alt="Imagen de FitnessHub" class="img-fluid" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+  <div class="hero-content">
+    <h1 class="display-3 text-uppercase"></h1>
+    <p class="lead custom-background">FitnessHub, tu casa es el nuevo gym</p>
+    <button class="btn btn-primary btn-lg">¡Empieza Hoy!</button>
+  </div>
+  </section> -->
+
+ 
+<!--   
+
+  <section class="hero d-flex align-items-center justify-content-center text-center text-white" img src='/src/assets/totalfit-benefit.6bbbb44a.jpeg' no-repeat center/cover;  height: 80vh;">
       <div class="hero-content">
         <h1 class="display-3 text-uppercase"></h1>
         <p class="lead custom-background">FitnessHub, tu casa es el nuevo gym</p>
         <button class="btn btn-primary btn-lg">¡Empieza Hoy!</button>
       </div>
-    </section>
+    </section> porque hay un error   -->
 
-   
- 
-    <!-- <section id="sobre-nosotros" class="py-5">
-      <div class="container text-center">
-        <h2 class="text-primary mb-4">Sobre Nosotros</h2>
-        <p>En FitnessHub, creemos en un estilo de vida saludable y accesible. Nuestra misión es proporcionarte herramientas, productos y servicios para alcanzar tus metas desde la comodidad de tu hogar.</p>
-      </div>
-    </section> -->
+
+
+
+
+
+
+    <section class="hero d-flex align-items-center justify-content-center text-center text-white" style="height: 80vh; position: relative;">
+  <!-- Imagen como fondo -->
+  <img src="/src/assets/totalfit-benefit.6bbbb44a.jpeg" alt="Imagen de FitnessHub" class="img-fluid" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+  
+  <!-- Contenido del Hero -->
+  <div class="hero-content">
+    <h1 class="display-3 text-uppercase"></h1>
+    <p class="lead custom-background">FitnessHub, tu casa es el nuevo gym</p>
+    <button class="btn btn-primary btn-lg">¡Empieza Hoy!</button>
+  </div>
+</section>
+
+
+
 
 
 

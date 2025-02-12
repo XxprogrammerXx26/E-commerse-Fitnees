@@ -1,81 +1,3 @@
- <!-- <template>
-    <div class="container py-5">
-      <h2 class="text-center text-danger mb-5">Clases en Vivo</h2>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card shadow-lg border-0 rounded-lg">
-            <div class="card-body">
-              <h3 class="card-title text-danger mb-4">Únete a nuestras clases en vivo</h3>
-              <p class="card-text">
-                Nuestras clases en vivo te permiten entrenar desde cualquier lugar y en cualquier momento. Con la orientación de nuestros entrenadores en tiempo real,
-                ¡puedes sentir la motivación y el apoyo necesario para alcanzar tus objetivos!
-              </p>
-              <p><strong>¿Qué clases ofrecemos?</strong></p>
-              <ul>
-                <li>Yoga en vivo</li>
-                <li>Entrenamientos de alta intensidad (HIIT)</li>
-                <li>Clases de cardio y tonificación</li>
-                <li>Entrenamientos personalizados en grupo</li>
-              </ul>
-              <p class="mt-3">¡Únete ahora y comienza tu entrenamiento con nosotros!</p>
-              <a href="#" class="btn btn-danger mt-3">Únete a la clase en vivo</a>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "ClasesEnVivo",
-  };
-  </script>
-  
-  <style scoped>
- 
-  .container {
-    max-width: 900px;
-  }
-  .card {
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  </style>
-   -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    <template>
     <div class="container py-5">
@@ -103,7 +25,6 @@
         </div>
       </div>
   
-      <!-- Modal para simular la clase en vivo -->
       <div v-if="claseEnVivo" class="modal-overlay">
         <div class="modal-content">
           <h3 class="text-center">Estás en una clase en vivo</h3>
@@ -121,15 +42,15 @@
     name: "ClasesEnVivo",
     data() {
       return {
-        claseEnVivo: false, // Controla si el modal está visible o no
+        claseEnVivo: false, 
       };
     },
     methods: {
-      // Método que simula unirse a la clase
+   
       unirseClase() {
         this.claseEnVivo = true;
       },
-      // Método para cerrar el modal y salir de la clase
+     
       cerrarClase() {
         this.claseEnVivo = false;
       },
@@ -138,7 +59,7 @@
   </script>
   
   <style scoped>
-  /* Estilos opcionales */
+  
   .container {
     max-width: 900px;
   }
@@ -147,7 +68,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  /* Modal de clase en vivo */
+  
   .modal-overlay {
     position: fixed;
     top: 0;
